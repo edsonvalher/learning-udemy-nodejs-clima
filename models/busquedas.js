@@ -24,8 +24,14 @@ class Busquedas {
                 params: this.parametros
             })
             const resp = await instance.get()
-            console.log(resp.data)
-            return [] //retorna los lugares que coincidan coneste lugar            
+            return resp.data.features.map(lugar => ({
+                id: lugar.id,
+                nombre: lugar.place_name,
+                lng: lugar.center[0],
+                lat: lugar.center[1]
+            }))
+            //console.log(resp.data.features)
+            //return [] //retorna los lugares que coincidan coneste lugar            
         } catch (error) {
             return []
         }
