@@ -1,0 +1,21 @@
+{
+  "name": "05-clima-app",
+  "version": "1.0.0",
+  "description": "aplicación de clima",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [
+    "clima",
+    "app"
+  ],
+  "author": "Edson Valenzuela",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "colors": "^1.4.0",
+    "dotenv": "^8.2.0",
+    "inquirer": "^8.0.0"
+  }
+}
