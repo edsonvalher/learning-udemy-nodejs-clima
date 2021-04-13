@@ -33,11 +33,9 @@ class Busquedas {
         }
     }
 
-    parametrosClima(lat, lon) {
+    get parametrosClima() {
         return {
             'appid': process.env.OPENWHEATHER_KEY,
-            lat,
-            lon,
             'units': 'metric',
             'lang': 'es'
         }
@@ -47,18 +45,19 @@ class Busquedas {
             //crear instancia axios
             const instance = axios.create({
                 baseURL: `https://api.openweathermap.org/data/2.5/weather`,
-                params: this.parametrosClima(lat, lon)
+                params: { ...this.parametrosClima, lat, lon }
             })
             const resp = await instance.get()
-            //console.log(resp.data)
-            const { temp, temp_min, temp_max } = resp.data.main
+
+            const { weather, main } = resp.data
+
 
             //resp --> extraer la información  resp.data
             return {
-                desc: resp.data.weather[0].description, //del main
-                min: temp,
-                max: temp_min,
-                temp: temp_max
+                desc: weather[0].description, //del main
+                min: main.temp,
+                max: main.temp_min,
+                temp: main.temp_max
             }
         } catch (error) {
             //no se encontro la ciudad
